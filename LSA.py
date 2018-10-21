@@ -28,12 +28,6 @@ for i,conceitos in enumerate(SVD.components_):
     lista_termos_ordenado = sorted(termos_q_definem_conceito, key=lambda x: x[1], reverse=True) [0:10]
     lista_conceitos.append(lista_termos_ordenado)
 
-#impressão dos termos que constituem cada conceito
-for i,instancia in enumerate(lista_conceitos):
-    print ("conceito " + str(i))
-    for elemento in instancia:
-        print(elemento[0])
-
 #exportando modelo para um arquivo CSV
 
     #criando o dataframe
@@ -42,7 +36,5 @@ Saida_fitted_to_csv = {'concept': [i for i in range(0,len(lista_conceitos))],
                     'listas_de_termos': [[e[0] for e in lista ] for lista in lista_conceitos],
                     'listas_de_valores_de_termos': [[e[1] for e in lista ] for lista in lista_conceitos]}
 data_to_file = pandas.DataFrame(Saida_fitted_to_csv, columns = ['concept','listas_de_termos','listas_de_valores_de_termos'])
-print("Data frame em csv")
-print(data_to_file)
-#salvando o dataframe em um arquivo.csv
-export_csv = data_to_file.to_csv (r'concepts.csv', index = None, header=True)
+
+data_to_file.to_csv (r'concepts.csv', index = None, header=True)
